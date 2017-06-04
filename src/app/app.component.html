@@ -1,15 +1,21 @@
 <md-sidenav-container>
-  <md-sidenav #sidenav>
-    <!-- sidenav content -->
+  <!--<md-sidenav #sidenav>
 
-  </md-sidenav>
+  </md-sidenav>-->
 
   <!-- primary content -->
   <md-toolbar color="primary">
-    <a md-icon-button (click)="sidenav.toggle()">
+    <!--<a md-icon-button (click)="sidenav.toggle()">
       <md-icon>menu</md-icon>
-    </a>
+    </a>-->
     <span>Weather App</span>
+    <span class="spacer"></span>
+    <a routerLink="/map" routerLinkActive="mat-accent" class="mat-button">Map</a>
+    <a routerLink="/comparator" routerLinkActive="mat-accent" class="mat-button" >Comparator</a>
+    <span class="spacer"></span>
+    <a (click)="openComparatorList()" md-raised-button color="accent">Comparator List: {{comparatorService.stations.length}}</a>
   </md-toolbar>
+
+  <router-outlet></router-outlet>
 
 </md-sidenav-container>

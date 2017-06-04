@@ -1,0 +1,10 @@
+.spinner{
+  text-align: center;
+}
+.spinner md-spinner{
+  display: inline-block;
+  height: 50px;
+}
+table {
+  width: 100%;
+}

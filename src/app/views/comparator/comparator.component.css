@@ -1,0 +1,13 @@
+:host{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 64px;
+}
+
+.date-selector{
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}

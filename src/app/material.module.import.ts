@@ -5,7 +5,13 @@ import {
   MdSidenavModule,
   MdIconModule,
   MdIconRegistry,
-  MdButtonModule
+  MdButtonModule,
+  MdDialogModule,
+  MdProgressSpinnerModule,
+  MdListModule,
+  MdDatepickerModule,
+  MdInputModule,
+  MdNativeDateModule
 } from '@angular/material';
 
 @NgModule({
@@ -13,13 +19,25 @@ import {
     MdToolbarModule,
     MdSidenavModule,
     MdIconModule,
-    MdButtonModule
+    MdButtonModule,
+    MdDialogModule,
+    MdProgressSpinnerModule,
+    MdListModule,
+    MdDatepickerModule,
+    MdInputModule,
+    MdNativeDateModule
   ],
   exports: [
     MdToolbarModule,
     MdSidenavModule,
     MdIconModule,
-    MdButtonModule
+    MdButtonModule,
+    MdDialogModule,
+    MdProgressSpinnerModule,
+    MdListModule,
+    MdDatepickerModule,
+    MdInputModule,
+    MdNativeDateModule
   ],
 })
 export class MaterialModule {

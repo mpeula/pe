@@ -13,6 +13,10 @@ export class AemetService {
     private http: Http
   ) { }
 
+  getStations(indicativo: String = '') : Observable<any> {
+    return this.get(`/estaciones/${indicativo}`);
+  }
+
   get(path) : Observable<any> {   
     return this.http.get(`${this.url}${path}`)
       .map(response => {

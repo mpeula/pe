@@ -9,7 +9,7 @@ var EstacionSummary = function EstacionSummary(req, res) {
     "method": "GET",
     "rejectUnauthorized": false,
     "hostname": config.hostname,
-    "path": "/api/valores/climatologicos/valoresextremos/parametro/t/estacion/"+req.params.idema+config.apiKey,
+    "path": "/opendata/api/valores/climatologicos/valoresextremos/parametro/t/estacion/"+req.params.idema+config.apiKey,
     "headers": {
       "cache-control": "no-cache"
     }
@@ -47,11 +47,38 @@ var EstacionSummary = function EstacionSummary(req, res) {
           var iconv = new Iconv('latin1', 'UTF-8');
           var str = iconv.convert(Buffer.concat(chunks)).toString();
           var data = JSON.parse(str);
-          urlData.datos_json = data.map(function(value){
-            value.longitud = parseCoordinate(value.longitud);
-            value.latitud = parseCoordinate(value.latitud);
-            return value;
-          });
+          var parsedData = {
+            'indicativo': data.indicativo,
+            'nombre': data.nombre,
+            'provincia': data.ubicacion,
+            'absolutos': {
+              'temMin': {
+                'date': new Date(data.anioMin[12], data.mesMin, data.diaMin[12]),
+                'value': parseInt(data.temMin[12])/10
+              },
+              'temMax': {
+                'date': new Date(data.anioMax[12], data.mesMax, data.diaMax[12]),
+                'value': parseInt(data.temMax[12])/10
+              },
+              'temMedBaja': {
+                'date': new Date(data.anioMedBaja[12], data.mesMedBaja),
+                'value': parseInt(data.temMedBaja[12])/10
+              },
+              'temMedAlta': {
+                'date': new Date(data.anioMedAlta[12], data.mesMedAlta),
+                'value': parseInt(data.temMedAlta[12])/10
+              },
+              'temMedMin': {
+                'date': new Date(data.anioMedMin[12], data.mesMedMin),
+                'value': parseInt(data.temMedMin[12])/10
+              },
+              'temMedMax': {
+                'date': new Date(data.anioMedMax[12], data.mesMedMax),
+                'value': parseInt(data.temMedMax[12])/10
+              }
+            }
+          }
+          urlData.datos_json = parsedData;
           res.send(urlData);
         });
       });

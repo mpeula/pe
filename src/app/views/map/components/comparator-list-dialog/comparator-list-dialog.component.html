@@ -1,0 +1,16 @@
+<h2 md-dialog-title>Comparator List</h2>
+<md-dialog-content>
+  <md-list>
+    <md-list-item *ngFor="let station of comparatorService.stations">
+      <md-icon md-list-icon>explore</md-icon>
+      <h4 md-line>{{station.nombre}}</h4>
+      <p md-line> {{station.provincia}} </p>
+      <a md-icon-button color="warn" (click)="comparatorService.compare(station)">
+        <md-icon>delete</md-icon>
+      </a>
+    </md-list-item>
+  </md-list>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button md-dialog-close>Close</button>
+</md-dialog-actions>

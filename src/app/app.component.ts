@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ComparatorService } from './services/comparator.service';
+import { MdDialog } from '@angular/material';
+
+import { ComparatorListDialogComponent } from './views/map/components/comparator-list-dialog/comparator-list-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  constructor(
+    public comparatorService: ComparatorService,
+    private dialog: MdDialog
+  ) { }
+
+  openComparatorList() {
+    let dialogRef = this.dialog.open(ComparatorListDialogComponent);
+  }
+
 }

@@ -1,0 +1,16 @@
+<div class="date-selector">
+  <md-input-container>
+    <input placeholder="Start Date" mdInput [mdDatepicker]="startDate">
+    <button mdSuffix [mdDatepickerToggle]="startDate"></button>
+  </md-input-container>
+  <md-datepicker #startDate></md-datepicker>
+
+  <md-input-container>
+    <input placeholder="End Date" mdInput [mdDatepicker]="endDate">
+    <button mdSuffix [mdDatepickerToggle]="endDate"></button>
+  </md-input-container>
+  <md-datepicker #endDate></md-datepicker>
+</div>
+
+
+<chart [options]="chart" style="height:280px"></chart>

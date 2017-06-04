@@ -9,7 +9,7 @@ var EstacionDates = function EstacionDates(req, res) {
     "method": "GET",
     "rejectUnauthorized": false,
     "hostname": config.hostname,
-    "path": "/api/valores/climatologicos/diarios/datos/fechaini/"+req.params.startDate+"/fechafin/"+req.params.endDate+"/estacion/"+req.params.idema+config.apiKey,
+    "path": "/opendata/api/valores/climatologicos/diarios/datos/fechaini/"+req.params.startDate+"/fechafin/"+req.params.endDate+"/estacion/"+req.params.idema+config.apiKey,
     "headers": {
       "cache-control": "no-cache"
     }
@@ -47,11 +47,7 @@ var EstacionDates = function EstacionDates(req, res) {
           var iconv = new Iconv('latin1', 'UTF-8');
           var str = iconv.convert(Buffer.concat(chunks)).toString();
           var data = JSON.parse(str);
-          urlData.datos_json = data.map(function(value){
-            value.longitud = parseCoordinate(value.longitud);
-            value.latitud = parseCoordinate(value.latitud);
-            return value;
-          });
+          urlData.datos_json = data;
           res.send(urlData);
         });
       });

@@ -1,0 +1,42 @@
+<h2 md-dialog-title>Station "{{data.nombre}}" Temperature Details</h2>
+<md-dialog-content>
+  <div class="spinner" *ngIf="!summary.absolutos">
+    <md-spinner></md-spinner>
+  </div>
+  <table *ngIf="summary.absolutos">
+    <tr>
+      <td>Maximum temperature</td>
+      <td>{{summary?.absolutos?.temMax?.date | date}}</td>
+      <td>{{summary?.absolutos?.temMax?.value}}&deg;C</td>
+    </tr>
+    <tr>
+      <td>Minimum temperature</td>
+      <td>{{summary?.absolutos?.temMin?.date | date}}</td>
+      <td>{{summary?.absolutos?.temMin?.value}}&deg;C</td>
+    </tr>
+    <tr>
+      <td>Average temperature of the maximum</td>
+      <td>{{summary?.absolutos?.temMedAlta?.date | date:'MMMM y'}}</td>
+      <td>{{summary?.absolutos?.temMedAlta?.value}}&deg;C</td>
+    </tr>
+    <tr>
+      <td>Average temperature of the minimum</td>
+      <td>{{summary?.absolutos?.temMedBaja?.date | date:'MMMM y'}}</td>
+      <td>{{summary?.absolutos?.temMedBaja?.value}}&deg;C</td>
+    </tr>
+    <tr>
+      <td>Maximum average temperature</td>
+      <td>{{summary?.absolutos?.temMedMax?.date | date:'MMMM y'}}</td>
+      <td>{{summary?.absolutos?.temMedMax?.value}}&deg;C</td>
+    </tr>
+    <tr>
+      <td>Minimum average temperature</td>
+      <td>{{summary?.absolutos?.temMedMin?.date | date:'MMMM y'}}</td>
+      <td>{{summary?.absolutos?.temMedMin?.value}}&deg;C</td>
+    </tr>
+  </table>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button md-dialog-close>Close</button>
+  <button (click)="comparatorService.compare(data)" md-button color="accent">{{comparatorService.isComparing(data) ? 'No Compare' : 'Compare'}}</button>
+</md-dialog-actions>

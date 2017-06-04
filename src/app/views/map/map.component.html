@@ -1,0 +1,11 @@
+<sebm-google-map [latitude]="40" [longitude]="-3" [zoom]="6">
+  <app-map-wrapper (mapWrapperChange)="onChangeMapWrapper($event)"></app-map-wrapper>
+  <sebm-google-map-info-window [isOpen]="map.infoWindowOpen" (infoWindowClose)="map.infoWindowOpen = false" [disableAutoPan]="true" [latitude]="map.openMarker?.latitud" [longitude]="map.openMarker?.longitud">
+    <div>
+      <h4>{{map.openMarker?.nombre}}</h4>
+      <p>{{map.openMarker?.provincia}}</p>
+      <a (click)="openDetails(map.openMarker)" md-button color="primary">Details</a>
+      <a (click)="comparatorService.compare(map.openMarker)" md-button color="accent">{{comparatorService.isComparing(map.openMarker) ? 'No Compare' : 'Compare'}}</a>
+    </div>
+  </sebm-google-map-info-window>
+</sebm-google-map>
