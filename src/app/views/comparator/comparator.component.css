@@ -11,3 +11,11 @@
   width: 100%;
   text-align: center;
 }
+
+chart{
+  display: block;
+  width: 100%;
+}
+/deep/ .highcharts-container{
+  width: 100% !important;
+}

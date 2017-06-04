@@ -78,7 +78,7 @@ var EstacionSummary = function EstacionSummary(req, res) {
               }
             },
             'seriesMensuales': [{
-              name: 'temMin',
+              name: 'Minimum',
               data: data.temMin.splice(0, 12).map(function(value, key){
                 return {
                   y: parseInt(value)/10,
@@ -86,7 +86,7 @@ var EstacionSummary = function EstacionSummary(req, res) {
                 }
               })
             }, {
-              name: 'temMax',
+              name: 'Maximum',
               data: data.temMax.splice(0, 12).map(function(value, key){
                 return {
                   y: parseInt(value)/10,
@@ -94,7 +94,7 @@ var EstacionSummary = function EstacionSummary(req, res) {
                 }
               })
             }, {
-              name: 'temMedBaja',
+              name: 'Average of the minimum',
               data: data.temMedBaja.splice(0, 12).map(function(value, key){
                 return {
                   y: parseInt(value)/10,
@@ -102,7 +102,7 @@ var EstacionSummary = function EstacionSummary(req, res) {
                 }
               })
             }, {
-              name: 'temMedAlta',
+              name: 'Average of the maximum',
               data: data.temMedAlta.splice(0, 12).map(function(value, key){
                 return {
                   y: parseInt(value)/10,
@@ -110,7 +110,7 @@ var EstacionSummary = function EstacionSummary(req, res) {
                 }
               })
             }, {
-              name: 'temMedMin',
+              name: 'Minimum average',
               data: data.temMedMin.splice(0, 12).map(function(value, key){
                 return {
                   y: parseInt(value)/10,
@@ -118,7 +118,7 @@ var EstacionSummary = function EstacionSummary(req, res) {
                 }
               })
             }, {
-              name: 'temMedMax',
+              name: 'Maximum average',
               data: data.temMedMax.splice(0, 12).map(function(value, key){
                 return {
                   y: parseInt(value)/10,
@@ -138,14 +138,6 @@ var EstacionSummary = function EstacionSummary(req, res) {
   });
 
   req.end();
-}
-function parseCoordinate(coordinate) {
-  var letter = coordinate.substr(-1);
-  var number = parseInt(coordinate.replace(letter, ""))/10000;
-  if(letter === "W" || letter === "S") {
-    number *= -1;
-  }
-  return number;
 }
 
 module.exports.EstacionSummary = EstacionSummary;

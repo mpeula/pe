@@ -35,7 +35,7 @@
       <td>{{summary?.absolutos?.temMedMin?.value}}&deg;C</td>
     </tr>
   </table>
-  <chart [options]="chart" style="height:280px"></chart>
+  <chart *ngIf="summary.absolutos" [options]="chart" style="height:280px"></chart>
 </md-dialog-content>
 <md-dialog-actions>
   <button md-button md-dialog-close>Close</button>

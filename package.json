@@ -23,13 +23,14 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "angular2-google-maps": "^0.17.0",
+    "angular2-highcharts": "^0.5.5",
+    "chunk-date-range": "^0.1.0",
     "core-js": "^2.4.1",
     "express": "^4.15.3",
     "iconv": "^2.2.3",
     "js-marker-clusterer": "^1.0.0",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4",
-    "angular2-highcharts": "^0.5.5"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular/cli": "1.0.6",

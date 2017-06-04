@@ -17,6 +17,10 @@ export class AemetService {
     return this.get(`/estaciones/${indicativo}`);
   }
 
+  getByDate(indicativo, startDate, endDate) : Observable<any> {
+    return this.get(`/estaciones/${indicativo}/${startDate.getTime()}/${endDate.getTime()}`);
+  }
+
   get(path) : Observable<any> {   
     return this.http.get(`${this.url}${path}`)
       .map(response => {

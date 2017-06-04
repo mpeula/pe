@@ -1,16 +1,21 @@
 <div class="date-selector">
   <md-input-container>
-    <input placeholder="Start Date" mdInput [mdDatepicker]="startDate">
+    <input placeholder="Start Date" mdInput [mdDatepicker]="startDate" [(ngModel)]="dates.startDate">
     <button mdSuffix [mdDatepickerToggle]="startDate"></button>
   </md-input-container>
   <md-datepicker #startDate></md-datepicker>
 
   <md-input-container>
-    <input placeholder="End Date" mdInput [mdDatepicker]="endDate">
+    <input placeholder="End Date" mdInput [mdDatepicker]="endDate" [(ngModel)]="dates.endDate">
     <button mdSuffix [mdDatepickerToggle]="endDate"></button>
   </md-input-container>
   <md-datepicker #endDate></md-datepicker>
+
+  <a md-icon-button color="primary" (click)="refresh()">
+    <md-icon>refresh</md-icon>
+  </a>
 </div>
 
+<chart *ngIf="rainChart" [options]="rainChart" style="height:400px; width:100%;"></chart>
+<chart *ngIf="tempChart" [options]="tempChart" style="height:400px; width:100%;"></chart>
 
-<chart [options]="chart" style="height:280px"></chart>
