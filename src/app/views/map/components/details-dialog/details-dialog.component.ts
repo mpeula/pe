@@ -11,6 +11,7 @@ import { ComparatorService } from '../../../../services/comparator.service';
 })
 export class DetailsDialogComponent implements OnInit {
   public summary: any = {};
+  public chart: any = {};
 
   constructor(
     private aemet: AemetService,
@@ -23,9 +24,28 @@ export class DetailsDialogComponent implements OnInit {
     this.aemet.getStations(this.data.indicativo).subscribe(
       response => {
         this.summary = response.datos_json;
+        this.chart = {
+          chart: {
+            type: 'line'
+          },
+          title : { text : 'Monthly Temperature' },
+          series: response.datos_json.seriesMensuales,
+          tooltip: {
+            formatter: function() {
+              return 'Year '+this.point.year + ': <b>'+this.point.y+'°C</b>';
+            }
+          },
+          xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          },
+          yAxis: [{
+            title: {
+              text: 'Temperature'
+            },
+          }]
+        };
       }
     );
-    console.log();
   }
 
 }

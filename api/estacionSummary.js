@@ -76,7 +76,56 @@ var EstacionSummary = function EstacionSummary(req, res) {
                 'date': new Date(data.anioMedMax[12], data.mesMedMax),
                 'value': parseInt(data.temMedMax[12])/10
               }
-            }
+            },
+            'seriesMensuales': [{
+              name: 'temMin',
+              data: data.temMin.splice(0, 12).map(function(value, key){
+                return {
+                  y: parseInt(value)/10,
+                  year: data.anioMin[key]
+                }
+              })
+            }, {
+              name: 'temMax',
+              data: data.temMax.splice(0, 12).map(function(value, key){
+                return {
+                  y: parseInt(value)/10,
+                  year: data.anioMax[key]
+                }
+              })
+            }, {
+              name: 'temMedBaja',
+              data: data.temMedBaja.splice(0, 12).map(function(value, key){
+                return {
+                  y: parseInt(value)/10,
+                  year: data.anioMedBaja[key]
+                }
+              })
+            }, {
+              name: 'temMedAlta',
+              data: data.temMedAlta.splice(0, 12).map(function(value, key){
+                return {
+                  y: parseInt(value)/10,
+                  year: data.anioMedAlta[key]
+                }
+              })
+            }, {
+              name: 'temMedMin',
+              data: data.temMedMin.splice(0, 12).map(function(value, key){
+                return {
+                  y: parseInt(value)/10,
+                  year: data.anioMedMin[key]
+                }
+              })
+            }, {
+              name: 'temMedMax',
+              data: data.temMedMax.splice(0, 12).map(function(value, key){
+                return {
+                  y: parseInt(value)/10,
+                  year: data.anioMedMax[key]
+                }
+              })
+            }]
           }
           urlData.datos_json = parsedData;
           res.send(urlData);
