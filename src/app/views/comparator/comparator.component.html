@@ -21,5 +21,9 @@
   <a routerLink="/map" md-raised-button color="primary">MAP</a>
 </div>
 
-<chart *ngIf="rainChart" [options]="rainChart" style="height:400px; width:100%;"></chart>
-<chart *ngIf="tempChart" [options]="tempChart" style="height:400px; width:100%;"></chart>
+<div class="spinner" *ngIf="state === 'loading'">
+  <md-spinner></md-spinner>
+</div>
+
+<chart *ngIf="state === 'loaded' && rainChart" [options]="rainChart" style="height:400px; width:100%;"></chart>
+<chart *ngIf="state === 'loaded' && tempChart" [options]="tempChart" style="height:400px; width:100%;"></chart>

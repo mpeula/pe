@@ -12,6 +12,7 @@ export class ComparatorComponent implements OnInit {
   public rainChart: any = false;
   public tempChart: any = false;
   public stationsData = [];
+  public state = 'loaded';
 
   constructor(
     private aemet: AemetService,
@@ -27,9 +28,10 @@ export class ComparatorComponent implements OnInit {
       return;
     }
     this.stationsData = [];
+    this.state = 'loading';
     this.getStations(0).then(() => {
       this.buildCharts();
-      console.log('Downloaded all stations data');
+      this.state = 'loaded';
     });
   }
 
@@ -131,6 +133,11 @@ export class ComparatorComponent implements OnInit {
       tooltip: {
         shared: true,
         valueSuffix: '°C'
+      },
+      plotOptions: {
+        arearange: {
+          fillOpacity: 0.3
+        }
       },
       xAxis: {
         categories: categories

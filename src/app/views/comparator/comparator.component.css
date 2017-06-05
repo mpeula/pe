@@ -19,3 +19,11 @@ chart{
 /deep/ .highcharts-container{
   width: 100% !important;
 }
+
+.spinner{
+  text-align: center;
+}
+.spinner md-spinner{
+  display: inline-block;
+  height: 50px;
+}
