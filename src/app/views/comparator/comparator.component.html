@@ -1,12 +1,12 @@
-<div class="date-selector">
+<div *ngIf="comparatorService.stations.length" class="date-selector">
   <md-input-container>
-    <input placeholder="Start Date" mdInput [mdDatepicker]="startDate" [(ngModel)]="dates.startDate">
+    <input placeholder="Start Date" mdInput [mdDatepicker]="startDate" [(ngModel)]="comparatorService.dates.startDate">
     <button mdSuffix [mdDatepickerToggle]="startDate"></button>
   </md-input-container>
   <md-datepicker #startDate></md-datepicker>
 
   <md-input-container>
-    <input placeholder="End Date" mdInput [mdDatepicker]="endDate" [(ngModel)]="dates.endDate">
+    <input placeholder="End Date" mdInput [mdDatepicker]="endDate" [(ngModel)]="comparatorService.dates.endDate">
     <button mdSuffix [mdDatepickerToggle]="endDate"></button>
   </md-input-container>
   <md-datepicker #endDate></md-datepicker>
@@ -16,6 +16,10 @@
   </a>
 </div>
 
+<div *ngIf="!comparatorService.stations.length" class="date-selector">
+  <p>No stations selected. Select at least one to see the charts.</p>
+  <a routerLink="/map" md-raised-button color="primary">MAP</a>
+</div>
+
 <chart *ngIf="rainChart" [options]="rainChart" style="height:400px; width:100%;"></chart>
 <chart *ngIf="tempChart" [options]="tempChart" style="height:400px; width:100%;"></chart>
-

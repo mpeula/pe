@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ComparatorService {
   public stations: any[] = [];
+  public dates: any = {
+    startDate: new Date(2017, 4, 1),
+    endDate: new Date()
+  };
 
   constructor(){ }
 

@@ -11,10 +11,6 @@ import { ComparatorService } from '../../services/comparator.service';
 export class ComparatorComponent implements OnInit {
   public rainChart: any = false;
   public tempChart: any = false;
-  public dates: any = {
-    startDate: new Date(2017, 4, 1),
-    endDate: new Date()
-  };
   public stationsData = [];
 
   constructor(
@@ -41,8 +37,8 @@ export class ComparatorComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.aemet.getByDate(
         this.comparatorService.stations[index].indicativo, 
-        this.dates.startDate, 
-        this.dates.endDate
+        this.comparatorService.dates.startDate, 
+        this.comparatorService.dates.endDate
       ).subscribe(
         response => {
           this.stationsData.push(response);
@@ -66,10 +62,10 @@ export class ComparatorComponent implements OnInit {
     let series = [];
     this.stationsData.map((station, stationIndex) => {
       let tempSeries = [{
-        name: this.comparatorService.stations[stationIndex].nombre + ' Average Temperature',
+        name: this.comparatorService.stations[stationIndex].nombre + ' Pressure',
         data: [],
         yAxis: 1,
-        type: 'spline'
+        type: 'arearange'
       }, {
         name: this.comparatorService.stations[stationIndex].nombre + ' Rain',
         data: []
@@ -78,7 +74,7 @@ export class ComparatorComponent implements OnInit {
         if(stationIndex === 0){
           categories.push(day.fecha);
         }
-        tempSeries[0].data.push(parseFloat(day.tmed));
+        tempSeries[0].data.push([parseFloat(day.presMin), parseFloat(day.presMax)]);
         tempSeries[1].data.push(parseFloat(day.prec));
       });
       series = series.concat(tempSeries);
@@ -88,7 +84,7 @@ export class ComparatorComponent implements OnInit {
       chart: {
         type: 'column'
       },
-      title : { text : 'Temperature vs Rainfall' },
+      title : { text : 'Pressure vs Rainfall' },
       series: series,
       tooltip: {
         shared: true
@@ -102,7 +98,7 @@ export class ComparatorComponent implements OnInit {
         },
       }, {
         title: {
-          text: 'Temperature'
+          text: 'Pressure'
         },
         opposite: true
       }]
@@ -114,32 +110,27 @@ export class ComparatorComponent implements OnInit {
     let series = [];
     this.stationsData.map((station, stationIndex) => {
       let tempSeries = [{
-        name: this.comparatorService.stations[stationIndex].nombre + ' Temperature Max',
-        data: [],
-        type: 'spline'
-      }, {
-        name: this.comparatorService.stations[stationIndex].nombre + ' Temperature Min',
-        data: [],
-        type: 'spline'
+        name: this.comparatorService.stations[stationIndex].nombre,
+        data: []
       }]
       station.map(day => {
         if(stationIndex === 0){
           categories.push(day.fecha);
         }
-        tempSeries[0].data.push(parseFloat(day.tmax));
-        tempSeries[1].data.push(parseFloat(day.tmin));
+        tempSeries[0].data.push([parseFloat(day.tmin), parseFloat(day.tmax)]);
       });
       series = series.concat(tempSeries);
     });
 
     this.tempChart = {
       chart: {
-        type: 'column'
+        type: 'arearange',
       },
-      title : { text : 'Temperature Max vs Temperature Min' },
+      title : { text : 'Temperature Variation' },
       series: series,
       tooltip: {
-        shared: true
+        shared: true,
+        valueSuffix: '°C'
       },
       xAxis: {
         categories: categories
